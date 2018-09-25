@@ -33,9 +33,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         INSTRUCTIONS:
         Download this and simply run in your terminal:
         wget https://raw.githubusercontent.com/ahrasis/ISPConfig-Tools/master/resync_dns.php  --no-check-certificate
-        php -q resync_dns.php your.domain.tld.
-        Note the dot at the end of your targeted domain. If
-        domain isn't supplied, all zones will be resynced.
+        php -q resync_dns.php your.domain.tld
+        If domain isn't supplied, all zones will be resynced.
         
 ********************************************************************/
         
@@ -47,7 +46,7 @@ require_once '/usr/local/ispconfig/interface/lib/app.inc.php';
 /*      Get database access by using ispconfig default configuration so no
         user and its password are disclosed. Exit if its connection failed */
 
-if(is_null($conf['dbmaster_host'])) {
+if($conf['dbmaster_host']==null) {
         $ip_updater = mysqli_connect($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_database']);
 } else {
         $ip_updater = mysqli_connect($conf['dbmaster_host'], $conf['dbmaster_user'], $conf['dbmaster_password'], $conf['dbmaster_database']);
@@ -59,7 +58,7 @@ if (mysqli_connect_errno()) {
 
 /*      Now do dns resync for whatever purpose that you may need it. */
 
-$mdomain=$argv[1];
+$mdomain=$argv[1].'.';
 if(is_null($mdomain)) {
         $zones = $app->db->queryAllRecords("SELECT id,origin,serial FROM dns_soa WHERE active = 'Y'");
 } else {
