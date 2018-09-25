@@ -59,7 +59,7 @@ if (mysqli_connect_errno()) {
 /*      Now do dns resync for whatever purpose that you may need it. */
 
 $mdomain=$argv[1].'.';
-if(is_null($argv[1])) {
+if(is_null($mdomain)) {
         $zones = $app->db->queryAllRecords("SELECT id,origin,serial FROM dns_soa WHERE active = 'Y'");
 } else {
         $zones = $app->db->queryAllRecords("SELECT id,origin,serial FROM dns_soa WHERE origin = '$mdomain' AND active = 'Y'");
