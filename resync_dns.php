@@ -49,6 +49,9 @@ require_once '/usr/local/ispconfig/interface/lib/app.inc.php';
 
 $ip_updater = mysqli_connect($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_database']);
 if (mysqli_connect_errno()) {
+        // Could it be on remote master? Try
+        $ip_updater = mysqli_connect($conf['dbmaster_host'], $conf['dbmaster_user'], $conf['dbmaster_password'], $conf['dbmaster_database']);
+        // If both connections failed, print error and exit
         printf("\r\nConnection to ISPConfig database failed!\r\n", mysqli_connect_error());
         exit();
 }
