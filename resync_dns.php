@@ -47,11 +47,12 @@ require_once '/usr/local/ispconfig/interface/lib/app.inc.php';
 /*      Get database access by using ispconfig default configuration so no
         user and its password are disclosed. Exit if its connection failed */
 
-$ip_updater = mysqli_connect($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_database']);
-if (mysqli_connect_errno()) {
-        // Could it be on remote master? Try
+if(is_null($conf['dbmaster_host'])) {
+        $ip_updater = mysqli_connect($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_database']);
+} else {
         $ip_updater = mysqli_connect($conf['dbmaster_host'], $conf['dbmaster_user'], $conf['dbmaster_password'], $conf['dbmaster_database']);
-        // If both connections failed, print error and exit
+}
+if (mysqli_connect_errno()) {
         printf("\r\nConnection to ISPConfig database failed!\r\n", mysqli_connect_error());
         exit();
 }
