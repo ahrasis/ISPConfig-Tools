@@ -1,7 +1,7 @@
 <?php
 /*
 Copyright (c) 2015-2018, Hj Ahmad Rasyid Hj Ismail "ahrasis" ahrasis@gmail.com
-Internal Resync Tool For ISPConfig DNS Server.
+Resync Tool For ISPConfig DNS Server.
 BSD3 License. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
