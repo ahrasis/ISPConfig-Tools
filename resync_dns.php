@@ -32,7 +32,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         
         INSTRUCTIONS:
         Download this and simply run in your terminal:
-        wget https://raw.githubusercontent.com/ahrasis/ISPConfig-Tools/master/resync_dns.php
+        wget https://raw.githubusercontent.com/ahrasis/ISPConfig-Tools/master/resync_dns.php  --no-check-certificate
         php -q resync_dns.php your.domain.tld.
         Note the dot at the end of your targeted domain. If
         domain isn't supplied, all zones will be resynced.
